@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rpM-4n-ywS">
+                                <rect key="frame" x="66" y="265.33333333333337" width="261" height="321.33333333333337"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="person.badge.clock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="S0g-HJ-7oJ">
+                                        <rect key="frame" x="59" y="21.666666666666671" width="144" height="151"/>
+                                        <color key="tintColor" name="BrandBlue"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bdj-FC-1Wk">
+                                        <rect key="frame" x="20" y="177.66666666666669" width="221" height="60"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="50"/>
+                                        <color key="textColor" name="BrandBlue"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" name="BrandBlue"/>
+                                <constraints>
+                                    <constraint firstItem="Bdj-FC-1Wk" firstAttribute="top" secondItem="S0g-HJ-7oJ" secondAttribute="bottom" constant="7.6666666666666572" id="8J0-zX-vkb"/>
+                                    <constraint firstAttribute="trailing" secondItem="Bdj-FC-1Wk" secondAttribute="trailing" constant="20" id="90h-vn-x8H"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bdj-FC-1Wk" secondAttribute="bottom" constant="83.666666666666686" id="CHd-pO-D5v"/>
+                                    <constraint firstItem="S0g-HJ-7oJ" firstAttribute="top" secondItem="rpM-4n-ywS" secondAttribute="top" constant="20.000000000000018" id="h2b-vH-Ee7"/>
+                                    <constraint firstItem="S0g-HJ-7oJ" firstAttribute="leading" secondItem="rpM-4n-ywS" secondAttribute="leading" constant="59" id="qGI-F4-VtI"/>
+                                    <constraint firstAttribute="trailing" secondItem="S0g-HJ-7oJ" secondAttribute="trailing" constant="61.333333333333314" id="qjJ-WX-gqo"/>
+                                    <constraint firstItem="Bdj-FC-1Wk" firstAttribute="leading" secondItem="rpM-4n-ywS" secondAttribute="leading" constant="20" id="sQc-9R-CYy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rpM-4n-ywS" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="HT0-nc-t9D"/>
+                            <constraint firstItem="rpM-4n-ywS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="206.33333333333326" id="PKz-x8-PyQ"/>
+                            <constraint firstItem="rpM-4n-ywS" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="txj-bZ-dOw"/>
+                            <constraint firstItem="rpM-4n-ywS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="66" id="vbx-7L-Jhh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.badge.clock.fill" catalog="system" width="128" height="126"/>
+        <namedColor name="BrandBlue">
+            <color red="0.16500000655651093" green="0.77999997138977051" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
