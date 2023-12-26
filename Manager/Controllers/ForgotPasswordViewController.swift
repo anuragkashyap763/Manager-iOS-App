@@ -9,16 +9,44 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
-import Network
+//import Network
 
 
-class ForgotPassViewController: UIViewController {
+class ForgotPasswordViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        //making placeholder visible in forgot password screen
+        emailField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray]
+        )
         
+        /*this code is for making keyboard disappear when tapped on empty spaces on screen*/
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
+        
+        /*this code is for making the view shift a bit when keyboard appears*/
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    /*this code is for making the view shift a bit when keyboard appears*/
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= (keyboardSize.height-182)
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
     }
     
     @IBAction func sendPressed(_ sender: Any) {

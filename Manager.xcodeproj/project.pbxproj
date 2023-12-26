@@ -17,6 +17,11 @@
 		0B628191235DF01B00E35CAF /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B628190235DF01B00E35CAF /* HomePageViewController.swift */; };
 		4681A4561C0049DE135BEFC6 /* Pods_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 582FCB5B071BECBB5CD109EC /* Pods_Manager.framework */; };
 		952085B92B32C1D400DE4517 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085B82B32C1D400DE4517 /* ForgotPasswordViewController.swift */; };
+		952085BC2B34068000DE4517 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085BA2B34068000DE4517 /* TaskCell.swift */; };
+		952085BD2B34068000DE4517 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952085BB2B34068000DE4517 /* TaskCell.xib */; };
+		952085BF2B354CD000DE4517 /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */; };
+		95E025FF2B388F880035534E /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E025FE2B388F880035534E /* Tasks.swift */; };
+		95E026012B38A7550035534E /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E026002B38A7550035534E /* TaskDetailViewController.swift */; };
 		95E47AA92B298D7900FBEB10 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62818A235DF00000E35CAF /* WelcomeViewController.swift */; };
 		95E47AAB2B29AADD00FBEB10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95E47AAA2B29AADD00FBEB10 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -36,6 +41,11 @@
 		43740D16FD65A0D9CDDEC5BD /* Pods-Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manager.debug.xcconfig"; path = "Target Support Files/Pods-Manager/Pods-Manager.debug.xcconfig"; sourceTree = "<group>"; };
 		582FCB5B071BECBB5CD109EC /* Pods_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		952085B82B32C1D400DE4517 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		952085BA2B34068000DE4517 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		952085BB2B34068000DE4517 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
+		952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
+		95E025FE2B388F880035534E /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tasks.swift; path = Manager/Controllers/Tasks.swift; sourceTree = SOURCE_ROOT; };
+		95E026002B38A7550035534E /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		95E47AAA2B29AADD00FBEB10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD28EDA765C0C34549A34B78 /* Pods-Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manager.release.xcconfig"; path = "Target Support Files/Pods-Manager/Pods-Manager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +104,8 @@
 				0B62818E235DF01000E35CAF /* LoginViewController.swift */,
 				0B628190235DF01B00E35CAF /* HomePageViewController.swift */,
 				952085B82B32C1D400DE4517 /* ForgotPasswordViewController.swift */,
+				952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */,
+				95E026002B38A7550035534E /* TaskDetailViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -102,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				0B62817C235DEE8100E35CAF /* Main.storyboard */,
+				952085BA2B34068000DE4517 /* TaskCell.swift */,
+				952085BB2B34068000DE4517 /* TaskCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +123,7 @@
 		0B628194235DF03A00E35CAF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				95E025FE2B388F880035534E /* Tasks.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B628183235DEE8400E35CAF /* LaunchScreen.storyboard in Resources */,
+				952085BD2B34068000DE4517 /* TaskCell.xib in Resources */,
 				95E47AAB2B29AADD00FBEB10 /* GoogleService-Info.plist in Resources */,
 				0B628180235DEE8400E35CAF /* Assets.xcassets in Resources */,
 				0B62817E235DEE8100E35CAF /* Main.storyboard in Resources */,
@@ -251,8 +267,12 @@
 				952085B92B32C1D400DE4517 /* ForgotPasswordViewController.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,
+				952085BC2B34068000DE4517 /* TaskCell.swift in Sources */,
 				95E47AA92B298D7900FBEB10 /* WelcomeViewController.swift in Sources */,
+				95E026012B38A7550035534E /* TaskDetailViewController.swift in Sources */,
 				0B628191235DF01B00E35CAF /* HomePageViewController.swift in Sources */,
+				952085BF2B354CD000DE4517 /* AddNewTaskViewController.swift in Sources */,
+				95E025FF2B388F880035534E /* Tasks.swift in Sources */,
 				0B62818D235DF00B00E35CAF /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,7 +18,7 @@ class WelcomeViewController: UIViewController {
         
         let titleText = "Manager"
         for letter in titleText{
-            Timer.scheduledTimer(withTimeInterval: 0.2 * characterIndex, repeats: false) { (timer) in
+            Timer.scheduledTimer(withTimeInterval: 0.1 * characterIndex, repeats: false) { (timer) in
                 self.titleLabel.text?.append(letter)
             }
             characterIndex += 1.0
