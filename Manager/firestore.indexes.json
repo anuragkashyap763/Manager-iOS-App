@@ -1,0 +1,49 @@
+//
+//  firestore.indexes.json
+//  Manager
+//
+//  Created by ANURAG KASHYAP on 27/12/23.
+//
+
+import Foundation
+import FirebaseAuth // Import FirebaseAuth to access authentication methods
+
+func generateFirestoreIndexesForUser(email: String) {
+    let index1: [String: Any] = [
+        "collectionGroup": email, // Use the user's email as the collection name
+        "queryScope": "COLLECTION",
+        "fields": [
+            ["fieldPath": "Priority", "order": "ASCENDING"]
+        ]
+    ]
+
+    let index2: [String: Any] = [
+        "collectionGroup": email, // Use the user's email as the collection name
+        "queryScope": "COLLECTION",
+        "fields": [
+            ["fieldPath": "DeadLine", "order": "ASCENDING"]
+        ]
+    ]
+
+    let indexes = [index1, index2]
+
+    let jsonData: Data
+    do {
+        jsonData = try JSONSerialization.data(withJSONObject: indexes, options: .prettyPrinted)
+
+        let fileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("firestore.indexes.json")
+        try jsonData.write(to: fileURL)
+
+        print("firestore.indexes.json generated successfully!")
+    } catch {
+        print("Error creating JSON data: \(error)")
+    }
+}
+
+// This could be in your login/register flow
+if let userEmail = Auth.auth().currentUser?.email {
+    generateFirestoreIndexesForUser(email: userEmail)
+} else {
+    print("User is not logged in.")
+}
+

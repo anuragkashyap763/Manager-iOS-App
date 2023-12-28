@@ -12,4 +12,6 @@ struct Tasks{
     let taskDescription : String
     let taskDeadline : String
     let taskPriority : String
+    let isDeleted : Bool
+    let taskStatus : String
 }

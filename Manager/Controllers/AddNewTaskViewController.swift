@@ -83,25 +83,26 @@ class AddNewTaskViewController : UIViewController{
         //counter+=1
        
         if let userEmail = Auth.auth().currentUser?.email{
-            if taskNameTextField.text != nil{
+            if taskNameTextField.text != "" {
                 let date = datePicker.date
                 let priorityIndex = taskPriority.selectedSegmentIndex
                 let priority = taskPriority.titleForSegment(at: priorityIndex)
                 let taskDescription = descriptionText.text
-                db.collection(userEmail).addDocument(data: ["Task Name":taskNameTextField.text as Any, "Task Description":taskDescription as Any,"Priority":priority as Any,"DeadLine":date]){error in
+                db.collection(userEmail).addDocument(data: ["Task Name":taskNameTextField.text as Any, "Task Description":taskDescription as Any,"Priority":priority as Any,"DeadLine":date,"isDeleted":false,"Task Status":"In Progress"]){error in
                     if let e = error{
-                        print("Issue saving data")
+                        print("Issue saving data: \(e.localizedDescription)")
                     }else{
                         print("Data Saved")
                     }
                 }
+                self.dismiss(animated: true, completion: nil)
             }
             else {
                 taskNameTextField.placeholder = "Task Name Cannot Be Empty"
             }
         }
         //homePage.viewDidLoad()
-        self.dismiss(animated: true, completion: nil)
+        //self.dismiss(animated: true, completion: nil)
     }
     
 }

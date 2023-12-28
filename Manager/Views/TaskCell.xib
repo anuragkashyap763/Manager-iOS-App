@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReuseableCell" rowHeight="100" id="KGk-i7-Jjw" customClass="TaskCell" customModule="Manager" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="402" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
+                <rect key="frame" x="0.0" y="0.0" width="402" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="RNl-DT-dhu">
-                        <rect key="frame" x="4" y="4" width="386" height="92"/>
+                        <rect key="frame" x="4" y="4" width="394" height="92"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ip-JZ-25I" userLabel="LabelView">
                                 <rect key="frame" x="0.0" y="0.0" width="212" height="92"/>
@@ -40,10 +40,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-l7-6t0" userLabel="EditView">
-                                <rect key="frame" x="217" y="0.0" width="60" height="92"/>
+                                <rect key="frame" x="217" y="0.0" width="61.333333333333314" height="92"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e3g-x9-c84">
-                                        <rect key="frame" x="5" y="4" width="50" height="84"/>
+                                        <rect key="frame" x="5" y="4" width="51.333333333333336" height="84"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
@@ -61,10 +61,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Le4-8M-Mxi" userLabel="DeleteView">
-                                <rect key="frame" x="282" y="0.0" width="104" height="92"/>
+                                <rect key="frame" x="283.33333333333331" y="0.0" width="110.66666666666669" height="92"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsq-Ce-cVz">
-                                        <rect key="frame" x="5" y="4" width="94" height="84"/>
+                                        <rect key="frame" x="5" y="4" width="100.66666666666667" height="84"/>
                                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
@@ -111,7 +111,7 @@
                 <outlet property="editView" destination="rOq-l7-6t0" id="b31-MQ-Ubd"/>
                 <outlet property="taskNameLabel" destination="tBA-HQ-7PJ" id="nH1-GJ-Qv7"/>
             </connections>
-            <point key="canvasLocation" x="177.09923664122135" y="21.126760563380284"/>
+            <point key="canvasLocation" x="181.67938931297709" y="21.126760563380284"/>
         </tableViewCell>
     </objects>
     <resources>

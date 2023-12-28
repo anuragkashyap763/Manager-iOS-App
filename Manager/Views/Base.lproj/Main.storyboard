@@ -570,9 +570,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system" cornerStyle="medium">
-                                    <backgroundConfiguration key="background">
-                                        <color key="strokeColor" name="BrandBlue"/>
-                                    </backgroundConfiguration>
+                                    <backgroundConfiguration key="background"/>
                                     <color key="baseForegroundColor" name="BrandBlue"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -580,7 +578,7 @@
                                 </connections>
                             </button>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="BzF-JJ-BtM">
-                                <rect key="frame" x="0.0" y="0.0" width="338" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="337.5" height="50"/>
                                 <color key="barTintColor" name="BrandLightBlue"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -604,7 +602,7 @@
                             <constraint firstItem="sWS-ad-csV" firstAttribute="leading" secondItem="CEy-W8-acN" secondAttribute="leading" id="zAT-RH-e7h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Q5u-eL-Bgp">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="Q5u-eL-Bgp">
                         <barButtonItem key="rightBarButtonItem" title="Log Out" id="CFR-aV-x7M">
                             <connections>
                                 <action selector="LogOutPressed:" destination="lwd-AH-u8E" id="3Ke-FJ-fal"/>
@@ -612,7 +610,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="BzF-JJ-BtM" id="kEw-EX-lEk"/>
+                        <outlet property="searchBarField" destination="BzF-JJ-BtM" id="kEw-EX-lEk"/>
                         <outlet property="taskTableView" destination="sWS-ad-csV" id="Fe0-ep-tDC"/>
                         <segue destination="ZyA-xA-ZN1" kind="presentation" identifier="HomeScreenToAddTask" id="pVO-Az-Va9"/>
                         <segue destination="hzA-Ji-69Q" kind="presentation" identifier="TaskDetailSegue" modalPresentationStyle="fullScreen" id="InF-qh-R0V"/>

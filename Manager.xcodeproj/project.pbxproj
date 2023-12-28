@@ -22,6 +22,7 @@
 		952085BF2B354CD000DE4517 /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */; };
 		95E025FF2B388F880035534E /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E025FE2B388F880035534E /* Tasks.swift */; };
 		95E026012B38A7550035534E /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E026002B38A7550035534E /* TaskDetailViewController.swift */; };
+		95E026072B3C1D580035534E /* firestore.indexes.json in Sources */ = {isa = PBXBuildFile; fileRef = 95E026062B3C1D580035534E /* firestore.indexes.json */; };
 		95E47AA92B298D7900FBEB10 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62818A235DF00000E35CAF /* WelcomeViewController.swift */; };
 		95E47AAB2B29AADD00FBEB10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95E47AAA2B29AADD00FBEB10 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
@@ -46,6 +47,7 @@
 		952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
 		95E025FE2B388F880035534E /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tasks.swift; path = Manager/Controllers/Tasks.swift; sourceTree = SOURCE_ROOT; };
 		95E026002B38A7550035534E /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		95E026062B3C1D580035534E /* firestore.indexes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = firestore.indexes.json; sourceTree = "<group>"; };
 		95E47AAA2B29AADD00FBEB10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD28EDA765C0C34549A34B78 /* Pods-Manager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Manager.release.xcconfig"; path = "Target Support Files/Pods-Manager/Pods-Manager.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 				0B628181235DEE8400E35CAF /* LaunchScreen.storyboard */,
 				0B628184235DEE8400E35CAF /* Info.plist */,
 				95E47AAA2B29AADD00FBEB10 /* GoogleService-Info.plist */,
+				95E026062B3C1D580035534E /* firestore.indexes.json */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0B628177235DEE8100E35CAF /* AppDelegate.swift in Sources */,
+				95E026072B3C1D580035534E /* firestore.indexes.json in Sources */,
 				952085B92B32C1D400DE4517 /* ForgotPasswordViewController.swift in Sources */,
 				0B628179235DEE8100E35CAF /* SceneDelegate.swift in Sources */,
 				0B62818F235DF01000E35CAF /* LoginViewController.swift in Sources */,
