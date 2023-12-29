@@ -199,7 +199,14 @@ extension HomePageViewController : UITableViewDataSource{
         }
         
         cell.taskNameLabel.text = task.taskName
-        if task.taskStatus == "Complete"{
+        
+        // Set the default background color for the cell
+        cell.TaskBubbleView.backgroundColor = UIColor(named: "BackgroundYellow")
+        cell.editView.backgroundColor = UIColor(named: "BackgroundYellow")
+        cell.DeleteView.backgroundColor = UIColor(named: "BackgroundYellow")
+        
+        // Set the background color to green if the task status is "Complete"
+        if task.taskStatus == "Complete" {
             cell.TaskBubbleView.backgroundColor = UIColor(named: "BackgroundGreen")
             cell.editView.backgroundColor = UIColor(named: "BackgroundGreen")
             cell.DeleteView.backgroundColor = UIColor(named: "BackgroundGreen")
@@ -207,6 +214,7 @@ extension HomePageViewController : UITableViewDataSource{
         
         return cell
     }
+
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100

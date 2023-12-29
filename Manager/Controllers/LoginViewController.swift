@@ -13,6 +13,8 @@ class LoginViewController: UIViewController {
 
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
+    
+    
     //let passwordTextField = UITextField()
     
     
@@ -57,6 +59,18 @@ class LoginViewController: UIViewController {
         }
     }
 
+    
+    @IBAction func eyeButtonPressed(_ sender: UIButton) {
+        passwordTextfield.isSecureTextEntry.toggle()
+            
+            // Change the button image based on the password visibility
+            if passwordTextfield.isSecureTextEntry {
+                sender.setImage(UIImage(systemName: "eye"), for: .normal)
+            } else {
+                sender.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+            }
+    }
+    
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
