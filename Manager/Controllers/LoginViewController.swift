@@ -58,16 +58,23 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginPressed(_ sender: UIButton) {
-        if let email = emailTextfield.text, let password = passwordTextfield.text{
+        if let email = emailTextfield.text, let password = passwordTextfield.text {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-                if let err = error{
+                if let err = error {
+                    // Show an alert with the error description
+                    let alert = UIAlertController(title: "Error", message: err.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self?.present(alert, animated: true, completion: nil)
+                    
                     print(err)
-                }else{
-                    //Naviagte  to homePageViewController
+                } else {
+                    // Navigate to homePageViewController
                     self?.performSegue(withIdentifier: "LoginToChat", sender: self)
                 }
             }
         }
+
     }
     
 }

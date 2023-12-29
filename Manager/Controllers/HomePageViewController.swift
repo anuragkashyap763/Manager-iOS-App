@@ -11,7 +11,8 @@ import FirebaseFirestore
 import FirebaseAuth
 
 
-class HomePageViewController: UIViewController , UISearchBarDelegate{
+class HomePageViewController: UIViewController , UISearchBarDelegate , TaskCellDelegate {
+    
     
     @IBOutlet weak var taskTableView: UITableView!
     
@@ -23,27 +24,81 @@ class HomePageViewController: UIViewController , UISearchBarDelegate{
     var tasks : [Tasks] = []
     var filteredData : [Tasks] = []
     var isSearching = false
+    var docArray : [String] = []
     
     let UserEmail  = Auth.auth().currentUser?.email
     
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         taskTableView.delegate = self
         taskTableView.dataSource = self
         searchBarField.delegate = self
+        
+        
         navigationItem.hidesBackButton = true
+        // Customize navigation bar title
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: UIColor(named: "BrandBlue") ?? .blue, // Change the color here
+            .font: UIFont.boldSystemFont(ofSize: 20) // Change the font size and style here
+        ]
+        navigationController?.navigationBar.titleTextAttributes = attributes
+        
         title = "Manager"
-        //title.foregroundColor(nil)
         
         taskTableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "ReuseableCell")
         loadTasksFromFirestore()
         filteredData = tasks
         
+    }
+    
+    // this code if for making edit and delete buttons functional
+    func editButtonTapped(at indexPath: IndexPath) {
+        print("I will edit this cell")
         
+        self.performSegue(withIdentifier: "editTaskSegue", sender: self)
+    }
+    
+    func deleteButtonTapped(at indexPath: IndexPath) {
+        print("I will delete this cell")
+        print(indexPath.row)
+        print(docArray)
+        
+        //let docRef = db.collection(UserEmail ?? "").document().documentID
+        //print(docRef)
+        
+        let alertController = UIAlertController(title: "Delete Document",
+                                                message: "Are you sure you want to delete this document?",
+                                                preferredStyle: .alert)
+        
+        // Action to delete the document
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.db.collection(self.UserEmail ?? "").document(self.docArray[indexPath.row]).delete { error in
+                if let e = error {
+                    print("Error deleting document: \(e)")
+                } else {
+                    print("Document successfully deleted!")
+                    //self.docArray = []
+                    //print(self.docArray)
+                    self.tasks = []
+                }
+            }
+        }
+        
+        // Action to cancel the deletion
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alertController.addAction(deleteAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the alert
+        self.present(alertController, animated: true, completion: nil)
         
     }
+    
+    
     //code for searching in table views
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
@@ -56,62 +111,46 @@ class HomePageViewController: UIViewController , UISearchBarDelegate{
         taskTableView.reloadData()
     }
     
-    //This code is for deleting the task cell
-    func deleteSubcollection(collectionPath: String, completion: @escaping (Error?) -> Void) {
-        //let db = Firestore.firestore()
-        let collectionRef = db.collection(collectionPath)
-        
-        collectionRef.getDocuments { snapshot, error in
-            if let error = error {
-                completion(error)
-            } else {
-                guard let snapshot = snapshot else {
-                    completion(nil)
-                    return
-                }
-                
-                let batch = self.db.batch()
-                
-                for document in snapshot.documents {
-                    let docRef = collectionRef.document(document.documentID)
-                    batch.deleteDocument(docRef)
-                }
-                
-                // Commit the batch delete
-                batch.commit { batchError in
-                    completion(batchError)
-                }
-            }
-        }
-    }
-    
     
     //This code helps in fetching data from firestore
     func loadTasksFromFirestore(){
+        
         if let userEmail = Auth.auth().currentUser?.email{
             db.collection(userEmail).order(by: "Priority").order(by: "DeadLine").addSnapshotListener { querySnapshot, error in
                 self.tasks  = []
+                
+                self.docArray = []
                 if let e = error{
                     print("Issue fetching data from Firestore : \(e.localizedDescription)")
                 }else{
+                    print("abc119\(self.tasks)")
                     if let snapshotDocuments = querySnapshot?.documents{
+                        
+                        
+                        //print(snapshotDocuments)
                         for doc in snapshotDocuments{
+                            
                             //print(doc.data())
+                            self.docArray.append(doc.documentID)
+                            //print(doc.documentID)
+                            //print(doc.metadata)
+                            
                             let data = doc.data()
                             if let TaskName = data["Task Name"] as? String, let TaskDescription = data["Task Description"] as? String, let TaskPriority = data["Priority"] as? String, let Delete = data["isDeleted"] , let status = data["Task Status"] as? String{
                                 let TaskDeadline = "Today"
                                 //let TaskDeadline: Date = data["DeadLine"] as? Date ?? nil
                                 let TASKS = Tasks(taskName: TaskName, taskDescription: TaskDescription, taskDeadline: TaskDeadline , taskPriority: TaskPriority, isDeleted: Delete as! Bool, taskStatus: status)
-                                if TASKS.isDeleted == false{
-                                    self.tasks.append(TASKS)
-                                }
                                 
-                                //reloading table views
-                                DispatchQueue.main.async{
-                                    self.taskTableView.reloadData()
-                                }
+                                self.tasks.append(TASKS)
+                                
                             }
                         }
+                        //reloading table views
+                        DispatchQueue.main.async{
+                            self.taskTableView.reloadData()
+                            
+                        }
+                        
                     }
                 }
             }
@@ -149,6 +188,8 @@ extension HomePageViewController : UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = taskTableView.dequeueReusableCell(withIdentifier: "ReuseableCell", for: indexPath) as! TaskCell
+        cell.delegate = self
+        cell.indexPath = indexPath
         
         let task: Tasks
         if isSearching {
@@ -158,9 +199,12 @@ extension HomePageViewController : UITableViewDataSource{
         }
         
         cell.taskNameLabel.text = task.taskName
-        /*if task.taskStatus == "Complete"{
-            cell.backgroundColor = UIColor(named: "C1F2B0")
-        }*/
+        if task.taskStatus == "Complete"{
+            cell.TaskBubbleView.backgroundColor = UIColor(named: "BackgroundGreen")
+            cell.editView.backgroundColor = UIColor(named: "BackgroundGreen")
+            cell.DeleteView.backgroundColor = UIColor(named: "BackgroundGreen")
+        }
+        
         return cell
     }
     
@@ -176,48 +220,8 @@ extension HomePageViewController : UITableViewDelegate{
     
     
     func tableView(_ tableView : UITableView , didSelectRowAt indexPath : IndexPath){
+        
         print(indexPath.row)
-        
-        
-        let selectedItem = tasks[indexPath.row]
-        var fullPath : String = ""
-        var pathSubstring : String = ""
-        print(selectedItem)
-        
-        db.collection(UserEmail ?? "").addSnapshotListener { querySnapshot, error in
-            
-            //if let documentRef = querySnapshot.reference {
-            if let selectedSnapshot = querySnapshot?.documents[indexPath.row]{
-                
-                let documentRef = selectedSnapshot.reference
-                fullPath = documentRef.path
-                print("Full Path: \(fullPath)")
-                
-                let originalString = fullPath
-                let UserEmailLength = self.UserEmail?.count
-                
-                // Getting a substring after userEmail to the end of the string as it is the name of the document
-                pathSubstring = String(originalString[originalString.index(originalString.startIndex, offsetBy: (UserEmailLength ?? 0) + 1)...])
-                print(pathSubstring)
-                // Perform any further actions using the fullPath
-            } else {
-                print("Document reference not found")
-            }
-        }
-        
-        
-        
-        
-        
-        /*self.deleteSubcollection(collectionPath: "\(fullPath)/Priority" ) { error in
-            if let error = error {
-                print("Error deleting subcollection: \(error)")
-            } else {
-                print("Subcollection deleted successfully!")
-                // Handle success
-            }
-        }*/
-        
         //self.tasks.remove(at: indexPath.row)
         //tableView.deleteRows(at: [indexPath], with: .automatic)
         self.performSegue(withIdentifier: "TaskDetailSegue", sender: self)

@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol TaskCellDelegate: AnyObject {
+    func editButtonTapped(at indexPath: IndexPath)
+    func deleteButtonTapped(at indexPath: IndexPath)
+}
+
 class TaskCell: UITableViewCell {
 
     @IBOutlet weak var TaskBubbleView: UIView!
@@ -17,6 +22,8 @@ class TaskCell: UITableViewCell {
     
     @IBOutlet weak var DeleteView: UIView!
     
+    weak var delegate: TaskCellDelegate?
+    var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,12 +40,16 @@ class TaskCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+        if let indexPath = indexPath {
+            delegate?.editButtonTapped(at: indexPath)
+        }
     }
     
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        if let indexPath = indexPath {
+            delegate?.deleteButtonTapped(at: indexPath)
+        }
         
     }
     

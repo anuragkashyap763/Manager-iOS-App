@@ -20,6 +20,7 @@
 		952085BC2B34068000DE4517 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085BA2B34068000DE4517 /* TaskCell.swift */; };
 		952085BD2B34068000DE4517 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 952085BB2B34068000DE4517 /* TaskCell.xib */; };
 		952085BF2B354CD000DE4517 /* AddNewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */; };
+		95934F122B3ED26300A3BC48 /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95934F112B3ED26300A3BC48 /* EditTaskViewController.swift */; };
 		95E025FF2B388F880035534E /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E025FE2B388F880035534E /* Tasks.swift */; };
 		95E026012B38A7550035534E /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E026002B38A7550035534E /* TaskDetailViewController.swift */; };
 		95E026072B3C1D580035534E /* firestore.indexes.json in Sources */ = {isa = PBXBuildFile; fileRef = 95E026062B3C1D580035534E /* firestore.indexes.json */; };
@@ -45,6 +46,7 @@
 		952085BA2B34068000DE4517 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		952085BB2B34068000DE4517 /* TaskCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewTaskViewController.swift; sourceTree = "<group>"; };
+		95934F112B3ED26300A3BC48 /* EditTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
 		95E025FE2B388F880035534E /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tasks.swift; path = Manager/Controllers/Tasks.swift; sourceTree = SOURCE_ROOT; };
 		95E026002B38A7550035534E /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		95E026062B3C1D580035534E /* firestore.indexes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = firestore.indexes.json; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				952085B82B32C1D400DE4517 /* ForgotPasswordViewController.swift */,
 				952085BE2B354CD000DE4517 /* AddNewTaskViewController.swift */,
 				95E026002B38A7550035534E /* TaskDetailViewController.swift */,
+				95934F112B3ED26300A3BC48 /* EditTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				952085BC2B34068000DE4517 /* TaskCell.swift in Sources */,
 				95E47AA92B298D7900FBEB10 /* WelcomeViewController.swift in Sources */,
 				95E026012B38A7550035534E /* TaskDetailViewController.swift in Sources */,
+				95934F122B3ED26300A3BC48 /* EditTaskViewController.swift in Sources */,
 				0B628191235DF01B00E35CAF /* HomePageViewController.swift in Sources */,
 				952085BF2B354CD000DE4517 /* AddNewTaskViewController.swift in Sources */,
 				95E025FF2B388F880035534E /* Tasks.swift in Sources */,
