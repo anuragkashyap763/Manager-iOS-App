@@ -21,13 +21,16 @@ class HomePageViewController: UIViewController , UISearchBarDelegate , TaskCellD
     
     let db = Firestore.firestore()
     
-    var tasks : [Tasks] = []
-    var filteredData : [Tasks] = []
+    var tasks : [Tasks] = [] // Used for fetching data from firestore
+    var filteredData : [Tasks] = [] //used for searching data in UISearchBar
     var isSearching = false
-    var docArray : [String] = []
+    var docArray : [String] = [] //used for deleting data
+    var selectedTask = Tasks(taskName: "", taskDescription: "", taskDeadline: "", taskPriority: "", isDeleted: false, taskStatus: "")
+    //for transferring data to taskDetailViewController
     
     let UserEmail  = Auth.auth().currentUser?.email
     
+    var selectedIndexPath: IndexPath? //for sending row value to TaskDetailViewController for MarkAsDone function
     
     
     override func viewDidLoad() {
@@ -57,10 +60,45 @@ class HomePageViewController: UIViewController , UISearchBarDelegate , TaskCellD
     // this code if for making edit and delete buttons functional
     func editButtonTapped(at indexPath: IndexPath) {
         print("I will edit this cell")
+        //print(selectedTask)
+        self.db.collection(self.UserEmail ?? "").document(self.docArray[indexPath.row]).getDocument { (document, error) in
+            if let error = error {
+                print("Error getting document: \(error.localizedDescription)")
+            } else {
+                if let document = document, document.exists {
+                    // Access the document data
+                    let data = document.data()
+                    
+                    // Perform operations with the retrieved data
+                    // Example: Access specific fields if they exist
+                    if let taskName = data?["Task Name"] as? String,
+                        let taskDescription = data?["Task Description"] as? String,
+                        let taskPriority = data?["Priority"] as? String,
+                        let isDeleted = data?["isDeleted"] as? Bool,
+                        let taskStatus = data?["Task Status"] as? String {
+                        
+                        let taskDeadline = "Today"
+                        // Store data to pass to the next view controller
+                        let selectedTask = Tasks(taskName: taskName, taskDescription: taskDescription, taskDeadline: taskDeadline, taskPriority: taskPriority, isDeleted: isDeleted, taskStatus: taskStatus)
+                        
+                        // Perform segue after data extraction
+                        self.selectedIndexPath = indexPath
+                        DispatchQueue.main.async {
+                            self.selectedTask = selectedTask
+                            //print("256\(selectedTask)")
+                            self.performSegue(withIdentifier: "editTaskSegue", sender: self)
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
         
-        self.performSegue(withIdentifier: "editTaskSegue", sender: self)
+        //self.performSegue(withIdentifier: "editTaskSegue", sender: self)
     }
     
+
     func deleteButtonTapped(at indexPath: IndexPath) {
         print("I will delete this cell")
         print(indexPath.row)
@@ -214,7 +252,7 @@ extension HomePageViewController : UITableViewDataSource{
         
         return cell
     }
-
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -224,18 +262,82 @@ extension HomePageViewController : UITableViewDataSource{
 
 
 // this code takes to another screen when a cell is selected by tapping to display its details , also it has functions to print the path of the data being stored in firebase
-extension HomePageViewController : UITableViewDelegate{
-    
-    
-    func tableView(_ tableView : UITableView , didSelectRowAt indexPath : IndexPath){
-        
-        print(indexPath.row)
-        //self.tasks.remove(at: indexPath.row)
-        //tableView.deleteRows(at: [indexPath], with: .automatic)
-        self.performSegue(withIdentifier: "TaskDetailSegue", sender: self)
+extension HomePageViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Fetch data from Firestore for the selected cell
+        self.db.collection(self.UserEmail ?? "").document(self.docArray[indexPath.row]).getDocument { (document, error) in
+            if let error = error {
+                print("Error getting document: \(error.localizedDescription)")
+            } else {
+                if let document = document, document.exists {
+                    // Access the document data
+                    let data = document.data()
+                    
+                    // Perform operations with the retrieved data
+                    // Example: Access specific fields if they exist
+                    if let taskName = data?["Task Name"] as? String,
+                        let taskDescription = data?["Task Description"] as? String,
+                        let taskPriority = data?["Priority"] as? String,
+                        let isDeleted = data?["isDeleted"] as? Bool,
+                        let taskStatus = data?["Task Status"] as? String {
+                        
+                        let taskDeadline = "Today"
+                        // Store data to pass to the next view controller
+                        let selectedTask = Tasks(taskName: taskName, taskDescription: taskDescription, taskDeadline: taskDeadline, taskPriority: taskPriority, isDeleted: isDeleted, taskStatus: taskStatus)
+                        
+                        // Perform segue after data extraction
+                        self.selectedIndexPath = indexPath
+                        DispatchQueue.main.async {
+                            self.selectedTask = selectedTask
+                            //print("256\(selectedTask)")
+                            self.performSegue(withIdentifier: "TaskDetailSegue", sender: self)
+                        }
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
     }
-    //self.performSegue(withIdentifier: "TaskDetailSegue", sender: self)
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TaskDetailSegue" {
+            if let destinationVC = segue.destination as? TaskDetailViewController {
+                // Pass the data to the destination view controller
+                //print("271\(selectedTask)")
+                destinationVC.taskName = selectedTask.taskName
+                destinationVC.taskDescription = selectedTask.taskDescription
+                destinationVC.taskPriority = selectedTask.taskPriority
+                destinationVC.taskDeadline = selectedTask.taskDeadline
+                destinationVC.docArr = docArray
+                
+                if let selectedIndexPath = selectedIndexPath {
+                    destinationVC.index = selectedIndexPath.row
+                }
+                
+            }
+        }
+        if segue.identifier == "editTaskSegue" {
+            if let destinationVC = segue.destination as? EditTaskViewController {
+                // Pass the data to the destination view controller
+                //print("271\(selectedTask)")
+                destinationVC.taskName = selectedTask.taskName
+                destinationVC.taskDesc = selectedTask.taskDescription
+                //destinationVC.taskPriority.text = selectedTask.taskPriority
+                //destinationVC.taskDeadline = Date()
+                destinationVC.docArr = docArray
+                
+                if let selectedIndexPath = selectedIndexPath {
+                    destinationVC.index = selectedIndexPath.row
+                }
+                
+            }
+        }
+    }
 }
+
+
 
 
 

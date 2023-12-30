@@ -97,6 +97,7 @@
                         </constraints>
                     </stackView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="RNl-DT-dhu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="Gd9-Ny-iAf"/>
                     <constraint firstAttribute="bottom" secondItem="RNl-DT-dhu" secondAttribute="bottom" constant="4" id="d6P-t0-BLw"/>
